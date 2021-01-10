@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author">
     <meta name="generator">
-    <title>Joanna Nowakowska</title>
+    <title>Joanna's Blog</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
 
@@ -58,7 +58,7 @@
           <div class="navbar-nav">
             <a class="nav-link" href="https://www.linkedin.com/in/joannanowakowska/">LinkedIn</a>
             <a class="nav-link" href="{% static 'Joanna Nowakowska_CV.pdf' %}">Resume</a>
-            <a class="nav-link" href="{% url 'all_blogs' %}">Blog</a>
+            <a class="nav-link active" href="{% url 'all_blogs' %}">Blog</a>
           </div>
         </div>
       </div>
@@ -70,32 +70,29 @@
   <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Hi, I am Joanna!</h1>
-        <img height="250" src="{% static 'Joanna Nowakowska_Photo_Small.jpg' %}" />
-        <p class="lead text-muted">Welcome on my private website created with Django and Bootstrap!</p>
-        <p>
-          <a href="mailto:joanna.k.nowakowska@gmail.com" class="btn btn-primary my-2">Email Me</a>
-        </p>
+        <h1 class="fw-light">Welcome on my Blog!</h1>
+        <p class="lead text-muted">I will be presenting you info about all the initiatives I participate in here! This way you can learn more about me.</p>
       </div>
     </div>
   </section>
 
+
   <div class="album py-5 bg-light">
     <div class="container">
 
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <h2 class="text-center">Latest posts</h2>
+      <hr />
+      <br />
+      <div class="container">
 
-        {% for job in jobs.all %}
-            <div class="col">
-              <div class="card shadow-sm">
-                <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{ job.image.url }}" role="img" preserveAspectRatio="xMidYMid slice" focusable="false"></img>
-
-                <div class="card-body">
-                  <p class="card-text">{{ job.summary }}</p>
-                </div>
-              </div>
-            </div>
-        {% endfor %}
+          {% for blog in blogs.all %}
+            <a href="{% url 'detailed_blog' blog.id %}"><h3>{{ blog.title }}</h3><a/>
+            <p>{{ blog.publication_date }}</p>
+            <img class="img-fluid" src="{{ blog.image.url }}" height="400" width="400">
+            <br />
+            <p>{{ blog.summary }}</p>
+            <br/>
+          {% endfor %}
 
       </div>
     </div>
